@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шокопаста</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #6b4226;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            width: 48%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .product:hover {
+            transform: translateY(-10px);
+        }
+        .product img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .product h2 {
+            margin: 10px 0;
+            font-size: 20px;
+            text-align: center;
+        }
+        .product p {
+            margin: 5px 0;
+            font-size: 18px;
+            text-align: center;
+        }
+        .product .price {
+            font-weight: bold;
+            color: #6b4226;
+        }
+        .product .buy-button {
+            background-color: #6b4226;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .product .quantity-controls {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .product .quantity-controls button {
+            background-color: #6b4226;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            transition: background-color 0.2s;
+        }
+        .product .quantity-controls button:hover {
+            background-color: #8b5e3c;
+        }
+        .product .quantity-display {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #6b4226;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .modal .quantity-controls button {
+            background-color: #6b4226;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            transition: background-color 0.2s;
+        }
+        .modal .quantity-controls button:hover {
+            background-color: #8b5e3c;
+        }
+        .modal .quantity-display {
+            background-color: #6b4226;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+        .modal .buy-button {
+            background-color: #6b4226;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        footer {
+            background-color: #6b4226;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Шокопаста</h1>
+    </header>
+    <div class="container">
+        <!-- Repeat this block for each product -->
+        <div class="product" data-title="Product 1" data-description="Описание для Product 1" data-price="440" data-image="https://cache3.youla.io/files/images/780_780/5d/57/5d577bb2074b3e6c3359dfd6.jpg">
+            <img src="https://cache3.youla.io/files/images/780_780/5d/57/5d577bb2074b3e6c3359dfd6.jpg" alt="Product 1">
+            <h2>Product 1</h2>
+            <p class="price">440 руб.</p>
+            <div class="quantity-controls">
+                <button class="decrease-quantity" data-id="item1" data-price="440">-</button>
+                <button class="increase-quantity" data-id="item1" data-price="440">+</button>
+            </div>
+            <button class="buy-button" id="btn1">Купить</button>
+            <div class="quantity-display">0</div>
+        </div>
+        <!-- Add more products as needed -->
+    </div>
+
+    <!-- Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <img id="modalImage" src="" alt="Product Image" style="width: 100%; height: auto;">
+            <p id="modalDescription"></p>
+            <p id="modalPrice"></p>
+            <div class="quantity-controls">
+                <button class="decrease-quantity" id="modalDecrease" data-id="" data-price="">-</button>
+                <div class="modal-quantity-display" id="modalQuantityDisplay">0</div>
+                <button class="increase-quantity" id="modalIncrease" data-id="" data-price="">+</button>
+            </div>
+            <button class="buy-button" id="modalBuyButton">Добавить в корзину</button>
+        </div>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
