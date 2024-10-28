@@ -7,7 +7,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.filters.command import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 
-bot = Bot(token="6449618732:AAGxQHGzs00TYuB1qGGMnuFVGsdY45UkDQ4")
+bot = Bot(token="")
 dp = Dispatcher()
 
 @dp.message(Command('start'))
@@ -43,7 +43,7 @@ async def web_app(callback_query: types.CallbackQuery):
 Cпасибо за заказ! В ближайшее время с вами свяжется менеджер.
 """)
 
-    await bot.send_message('-1002203523203', f"""
+    await bot.send_message('-10022035232', f"""
 новый заказ 
 {message}
 ID пользователя: {user_id}
