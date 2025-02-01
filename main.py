@@ -19,7 +19,7 @@ async def start(message: types.Message, state: FSMContext):
     with open("users.txt", "a", encoding='utf-8') as file:
         file.write(f"Username: {username}, Name: {name}, id = {user_id}\n")
 
-    item1 = KeyboardButton(text='Выбрать товар', web_app=WebAppInfo(url='https://exploranss.github.io/'))
+    item1 = KeyboardButton(text='Выбрать товар', web_app=WebAppInfo(url='https://exploranss.github.io/test/'))
     keyboard = ReplyKeyboardMarkup(keyboard=[[item1]], resize_keyboard=True)
     await bot.send_message(message.from_user.id, "Добро пожаловать, Вы можете заказать пасту через бота по кнопке ниже.\nИли напишите менеджеру @lementhet", reply_markup=keyboard, parse_mode="Markdown")
 
